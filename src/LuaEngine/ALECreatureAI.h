@@ -110,6 +110,13 @@ struct ALECreatureAI : ScriptedAI
             ScriptedAI::AttackStart(target);
     }
 
+    // Called when the creature exits combat (new threat system callback).
+    // Calls EngagementOver() then EnterEvadeMode() which fires the Lua hook.
+    void JustExitedCombat() override
+    {
+        CreatureAI::JustExitedCombat();
+    }
+
     // Called for reaction at stopping attack at no attackers or targets
     void EnterEvadeMode(EvadeReason /*why*/) override
     {
